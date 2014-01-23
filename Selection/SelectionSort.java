@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class BubbleSort {
-
+public class SelectionSort {
 	public static void main(String[] args){
 		if(args.length == 0 || !args[0].endsWith(".txt")){
 			System.err.println("Use a file of space separated integers for the input.");
@@ -38,28 +37,26 @@ public class BubbleSort {
 		System.out.println();
 		
 		/*
-		 * Start Bubble Sort
+		 * Start Selection Sort
 		 */
 		for(int i = 0; i < input.size()-1; i++){
-			int count = 0;
-			for(int j = 0; j < input.size()-1; j++){
-				int a = Integer.parseInt(input.get(j));
-				int b = Integer.parseInt(input.get(j+1));
+			int index = i;
+			for(int j = i+1; j < input.size(); j++){
 				comps++;
-				if(a > b){
-					count++;
-					moves++;
-					System.out.println(moves + ": Switching " + a + " and " + b);
-					int temp = a;
-					input.set(j, String.valueOf(b));
-					input.set(j+1, String.valueOf(temp));
+				if(Integer.parseInt(input.get(j)) < Integer.parseInt(input.get(index))){
+					index = j;
 				}
 			}
-			if(count == 0) break;
+			moves++;
+			System.out.println(moves + ": Switching " + input.get(i) + " and " + input.get(index));
+			String temp = input.get(i);
+			input.set(i, input.get(index));
+			input.set(index, temp);
 		}
 		/*
-		 * End Bubble Sort
+		 * End Selection Sort
 		 */
+		
 		
 		System.out.println("Checks: " + comps + "\tMoves: " + moves + "\tTime Elapsed: " + ((System.currentTimeMillis()-start)) + "ms");
 		for(String s : input) System.out.print(s + " ");
