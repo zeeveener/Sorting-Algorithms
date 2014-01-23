@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class SelectionSort {
+public class InsertionSort {
+
 	public static void main(String[] args){
 		if(args.length == 0 || !args[0].endsWith(".txt")){
 			System.err.println("Use a file of space separated integers for the input.");
@@ -35,29 +36,27 @@ public class SelectionSort {
 		for(String s : input) System.out.print(s + " ");
 		System.out.println();
 		
-		
 		long start = System.currentTimeMillis();
 		/*
-		 * Start Selection Sort
+		 * Start Insertion Sort
 		 */
-		for(int i = 0; i < input.size()-1; i++){
-			int index = i;
-			for(int j = i+1; j < input.size(); j++){
+		for(int i = 1; i < input.size(); i++){
+			for(int j = i; j > 0; j--){
 				comps++;
-				if(Integer.parseInt(input.get(j)) < Integer.parseInt(input.get(index))){
-					index = j;
+				if(Integer.parseInt(input.get(j)) < Integer.parseInt(input.get(j-1))){
+					moves++;
+					System.out.println(moves + ": Switching " + input.get(j) + " and " + input.get(j-1));
+					String temp = input.get(j);
+					input.set(j, input.get(j-1));
+					input.set(j-1, temp);
+				}else{
+					break;
 				}
 			}
-			moves++;
-			System.out.println(moves + ": Switching " + input.get(i) + " and " + input.get(index));
-			String temp = input.get(i);
-			input.set(i, input.get(index));
-			input.set(index, temp);
 		}
 		/*
-		 * End Selection Sort
+		 * End Insertion Sort
 		 */
-		
 		
 		System.out.println("Checks: " + comps + "\tMoves: " + moves + "\tTime Elapsed: " + ((System.currentTimeMillis()-start)) + "ms");
 		for(String s : input) System.out.print(s + " ");

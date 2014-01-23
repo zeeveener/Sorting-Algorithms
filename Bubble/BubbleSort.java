@@ -14,7 +14,6 @@ public class BubbleSort {
 			return;
 		}
 		int comps=0, moves=0;
-		long start = System.currentTimeMillis();
 		BufferedReader br;
 		ArrayList<String> input = new ArrayList<String>();
 		try {
@@ -37,6 +36,8 @@ public class BubbleSort {
 		for(String s : input) System.out.print(s + " ");
 		System.out.println();
 		
+		
+		long start = System.currentTimeMillis();
 		/*
 		 * Start Bubble Sort
 		 */
